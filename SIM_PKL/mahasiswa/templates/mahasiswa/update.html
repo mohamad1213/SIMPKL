@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div id="layoutSidenav_content">
+  <main>
+    <div class="container-fluid">
+      <h1 class="mt-4">data Mahasiswa</h1>
+      <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item active">Update Data</li>
+      </ol>
+      <div class="row">
+        <div class="col-md-10">
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <form action="" method="POST" class="mt-3">
+                  {% csrf_token %}
+
+                  <div class="form-group">
+                    <label for="">Judul</label>
+                    <input type="text" name="judul" value="{{data.judul}}" class="form-control mt-2">
+                  </div>
+                  <div class="form-group">
+                    <label for="">Nama Mitra</label>
+                    <input type="text" name="nama" value="{{data.nama}}" class="form-control mt-2"><br>
+                  </div>
+                  <div class="form-group">
+                    <label for="">Alamat</label>
+                    <input type="text" name="alamat" value="{{data.alamat}}" class="form-control mt-2"><br>
+                  </div>
+                  <div class="form-group">
+                    <label for="">Deskripsi</label>
+                    <input type="text" name="deskripsi" value="{{data.deskripsi}}" class="form-control mt-2"><br>
+                  </div>
+                  <div class="form-group">
+                    <label for="">Nomer Telpon</label>
+                    <input type="text" name="telp" value="{{data.telp}}" class="form-control mt-2"><br>
+                  </div>
+            </div>
+            <div class="modal-footer">
+              <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
+              <button class="btn btn-primary" type="submit">Save Data</button>
+            </div>
+          </div>
+          </form>
+          </table>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+{% endblock %}

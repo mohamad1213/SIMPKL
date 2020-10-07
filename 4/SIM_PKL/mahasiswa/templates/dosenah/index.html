@@ -1,0 +1,49 @@
+{% extends "base_dosen.html" %}
+
+{% block content %}
+<div id="layoutSidenav_content">
+  <main>
+    <div class="container-fluid">
+      <h1 class="mt-4" style="text-align: center;">Data PKL</h1>
+      <ol class="breadcrumb mb-4">
+      </ol>
+      <div class="card-body">
+        <!-- <a type="submit" href="/mahasiswas/input"><button class="btn btn-primary mb-4">Tambah</button></a> -->
+        <div class="table-responsive">
+          <table class="table table-hover" id="" width="100%" cellspacing="2">
+            <thead>
+              <tr style="background-color: #625f53; color: aliceblue;">
+                <th>No</th>
+                <th>Nim</th>
+                <th>Judul</th>
+                <th>Nama Mitra</th>
+                <th>Dosen Pembimbing</th>
+                <th>Tanggal Pelaksanaan</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            {% for d in data %}
+            <tr>
+              <td>{{forloop.counter}}</td>
+              <td>{{d.owner}}</td>
+              <td><a href="/dosenah/{{d.id}}">{{d.judul}}</a></td>
+              <td>{{d.nama_mitra}}</td>
+              <td>{{d.nama_dosen}}</td>
+              <td>{{d.tanggal_mulai}} - {{d.tanggal_selesai}}</td>
+              <td>
+                {% if d.approve == True %}
+                <span class="text-success" >Approved</span>
+                {% else %}
+                <span class="text-warning" >Process</span>
+                {% endif %}
+              </td>
+            </tr>
+            {% endfor %}
+          </table>
+          
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+{% endblock %}

@@ -1,0 +1,57 @@
+{% extends "base_staf.html" %}
+{% load static %}
+
+    {% block content %}
+    <div id="layoutSidenav_content">
+      <main>
+          <div class="container-fluid">
+              <h1 class="mt-4">STAF</h1>
+              <ol class="breadcrumb mb-4">
+                  <li class="breadcrumb-item active">Input Data Mahasiswa</li>
+              </ol>
+              <div class="row">
+                <div class="col-md-10">
+                  <div class="card-body">
+                    <a type="submit" href="/staf/new"><button class="btn btn-primary">Tambah</button></a>
+                      <div class="table-responsive">
+                          <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                              <thead>
+                                <tr>
+                                  <th scope="col">#</th>
+                                  <th scope="col">Nama</th>
+                                  <th scope="col">NIM</th>
+                                  <th scope="col">Prodi</th>
+                                  <th scope="col">Fakultas</th>
+                                  <th scope="col">Action</th>
+                                </tr>
+                                  </thead>
+                                <tr>
+                                    {% for d in data %}
+                                </tr>
+                                <tr>
+                                  <td>{{forloop.counter}}</td>
+                                  <td>{{d.nama}}</td>
+                                  <td>{{d.nim}}</td>
+                                  <td>{{d.prodi}}</td>
+                                  <td>{{d.fakultas}}</td>
+                                  <td>
+                                      <a class="btn btn-sm btn-success" href="/staf/{{d.id}}">Detail</a>
+                                  </td>
+                                </tr>
+                                    {% endfor %}
+                          </table>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+        </main>
+      </div>
+      {% endblock %}
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+  </body>
+</html>

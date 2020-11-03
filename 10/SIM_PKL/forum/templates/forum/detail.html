@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!-- Forum -->
+
+<!-- -- New -- -->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <h2 class="mt-4" style="text-align: center;">Forum {{data.nama_mitra}}</h2>
+            <br>
+            <form action="" method="post" class="mt-3" enctype="multipart/form-data">
+                {% load crispy_forms_tags %}
+                {% csrf_token %}
+                {{ form|crispy }}
+                <button type="submit" class="btn btn-warning mb-3 rounded-pill"
+                    style="background-color:rgb(255, 214, 0); color: black;">
+                    <span><span>&#43;</span><b> BUAT POSTINGAN </b></span>
+                </button>
+            </form>
+            <!-- <div class="media border p-3"> -->
+                <div class="row">
+                    <div class="col-12">
+                        {% for d in data.posting.all %}
+                        <div class="media-body">
+                            <div style="text-align: right;">
+                                <a href="#delete-{{d.id}}" data-toggle="modal" data-target="#delete-{{d.id}}">Hapus</a>
+                            </div>
+                            <h4>{{d.owner}} <small><i>Posted on {{d.waktu}}</i></small></h4>
+                            <p>{{d.desc}}</p>
+                            <form action="/forum/{{data.id}}/posting/{{d.id}}/komen" method="post" class="mt-3"
+                                enctype="multipart/form-data">
+                                {% load crispy_forms_tags %}
+                                {% csrf_token %}
+                                {{ form_komen|crispy }}
+                            </form>
+                            <div style="text-align: left;">
+                                <a href="#komen-{{d.id}}" data-toggle="collapse" data-target="#komen-{{d.id}}"
+                                    role="button" aria-expanded="false" aria-controls="komen">show all comment</a>
+                            </div>
+                            {% for k in d.komentar.all %}
+                            <div class="media p-3">
+                                <div class="collapse multi-collapse" id="komen-{{d.id}}">
+                                    <!-- <img src="img_avatar2.png" alt="{{data.owner}}" class="mr-3 mt-3 rounded-circle" style="width:45px;"> -->
+                                    <div class="media-body">
+                                        <h5>{{k.pengguna}} <small><i>Posted on {{k.waktu}}</i></small></h5>
+                                        <p>{{k.komentar}}</p>
+                                    </div>
+                                    <div class="action d-flex justify-content-between mt-2 align-items-center">
+                                        <div class="px-4">
+                                            <a href="/forum/{{data.id}}/posting/{{k.id}}/delete"
+                                                type="submit">Remove</a>
+                                            <a href="#">Reply</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                        <!-- Modal Delete -->
+                        <div class="modal fade" id="delete-{{d.id}}" tabindex="-1" role="dialog"
+                            aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                            <div class="modal-dialog modal-lg" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-body" style="text-align: center;">
+                                        <div class="modal-body">
+                                            <h5> Do You want to delete this post ?</h5>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button class="btn" type="button" data-dismiss="modal" aria-label="Close">
+                                            No
+                                        </button>
+                                        <a href="/forum/{{data.id}}/posting/{{d.id}}/delete" type="submit"
+                                            class="btn btn-danger">Yes</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

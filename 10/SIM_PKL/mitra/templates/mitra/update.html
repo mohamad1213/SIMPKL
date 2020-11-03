@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div id="layoutSidenav_content">
+  <main>
+      <div class="container-fluid">
+          <h1 class="mt-4">Update</h1>
+          <ol class="breadcrumb mb-4">
+              <li class="breadcrumb-item active">Data Mitra</li>
+          </ol>
+          <div class="row">
+            <div class="col-md-10">
+              <div class="card-body">
+                  <div class="table-responsive">
+                      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <form action="" method="POST" class="mt-3">
+                            {% csrf_token %}
+
+                            <div class="form-group">
+                              <input type="text" name="nama" value="{{data.nama}}" class="form-control mt-2"><br>
+                              <input type="text" name="alamat" value="{{data.alamat}}" class="form-control mt-2"><br>
+                              <input type="text" name="deskripsi" value="{{data.deskripsi}}" class="form-control mt-2"><br>
+                              <input type="text" name="pic" value="{{data.pic}}" class="form-control mt-2"><br>
+                              <input type="text" name="telp" value="{{data.telp}}" class="form-control mt-2"><br>
+
+
+                              <input type="submit" class="btn btn-primary mt-2">
+                            </div>
+                        </form>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+        </div>
+    </main>
+  </div>
+              
+  {% endblock %}
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+  </body>
+</html>
